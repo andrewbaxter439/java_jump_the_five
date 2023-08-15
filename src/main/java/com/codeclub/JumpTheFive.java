@@ -14,12 +14,12 @@ public class JumpTheFive
 {
 
     @Option(names = { "-h", "--help" }, usageHelp = true, description = "display a help message")
-    private boolean helpRequested = false;
+    private final boolean helpRequested = false;
 
     @Parameters(description = "Input text")
     private String[] inputText;
 
-    private static Map<Character, Character> lookup = new HashMap<Character, Character>();
+    private static final Map<Character, Character> lookup = new HashMap<>();
 
     private static void setNums() {
 
@@ -35,19 +35,19 @@ public class JumpTheFive
     public static void main( String[] args )
     {
         JumpTheFive init_app = new JumpTheFive();
-        boolean notext = false;
+        boolean no_text = false;
 
         try {
             new CommandLine(init_app).parseArgs(args);
         } catch (CommandLine.MissingParameterException e) {
-            notext = true;
+            no_text = true;
         }
 
-        if (init_app.helpRequested | notext) {
+        if (init_app.helpRequested | no_text) {
             CommandLine.usage(new JumpTheFive(), System.out);
             return;
         }
-        init_app.setNums();
+        setNums();
         init_app.run();
     }
 
@@ -57,9 +57,9 @@ public class JumpTheFive
 
     public void run() {
 
-        String injoined = String.join( " ", inputText);
+        String joined = String.join( " ", inputText);
 
-        char[] letters = injoined.toCharArray();
+        char[] letters = joined.toCharArray();
 
         StringBuilder out;
         out = new StringBuilder();
